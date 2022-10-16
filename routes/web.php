@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\SeatsController;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,5 +15,10 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
-});
+    return view('dashboard');
+})->name('dashboard');
+
+Route::get('/display-seats', [SeatsController::class, 'DisplaySeats'])->name('display.seats');
+Route::post('/select-seats', [SeatsController::Class, 'SelectSeats'])->name('select.seats');
+
+require __DIR__.'/auth.php';
