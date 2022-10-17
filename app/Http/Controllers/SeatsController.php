@@ -35,6 +35,9 @@ class SeatsController extends Controller
     public function SelectSeats(Request $request) {
         
         $seats = $this->__getSeatsModel()->SelectSeats($request);
+        if($seats==0){
+            return redirect()->back()->with('message','You can only book 7 seats, at most, in one go!');
+        }
         return redirect()->back()->with(compact('seats'));
     }
 }

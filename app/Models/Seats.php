@@ -30,6 +30,7 @@ class Seats extends Model
     public function SelectSeats($request)
     {
         $num_of_seats_req = $request->input('num_of_seats_req');
+        if($num_of_seats_req<=7){
 
         $all_seats = Seats::select('seat_id', 'status')->get()->toArray();
         $tot_av_seats = Seats::select('seat_id')->where('status', 1)->count();
@@ -102,6 +103,9 @@ class Seats extends Model
         }
         $ret_seats = Seats::select('seat_id', 'status')->get()->toArray();
         return $ret_seats;
+    }else{
+        return 0;
+    }
 
     }
 }
